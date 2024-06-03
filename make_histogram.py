@@ -15,8 +15,7 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl 
 from scipy.stats import gaussian_kde
 
-from create_helper_variables import create_synset_dicts, create_bin_dicts
-from create_subset_masked import check_synset
+from create_helper_variables import create_synset_dicts, create_bin_dicts, check_synset
 
 plt.rcParams['text.usetex'] = True
 mpl.rc('font',family='Times New Roman')

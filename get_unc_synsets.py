@@ -21,8 +21,7 @@ from ldm.models.diffusion.ddpm_test import DDPMSampler
 from save_ensemble import load_ensemble
 from sample_model import sample_model, get_model, seed_everything
 from make_histogram import get_min_max, norm_uncs, split_uncs
-from create_helper_variables import create_synset_dicts, create_bin_dicts
-from create_subset_masked import check_synset
+from create_helper_variables import create_synset_dicts, create_bin_dicts, check_synset
 
 
 if __name__ == '__main__':
@@ -30,7 +29,7 @@ if __name__ == '__main__':
     parser.add_argument('--path', type=str, help='path to model', required=True)
     parser.add_argument('--sampler', type=str, help='which smapler to use', default='DDIM')
     parser.add_argument('--unc_branch', type=int, help='where to branch for uncertainty', 
-        default=200)
+        default=199)
     parser.add_argument('--ddim_eta', type=float, help='controls stdev for generative process', 
         default=0.00)
     # ddim_eta 0-1, 1=DDPM 
@@ -65,25 +64,7 @@ if __name__ == '__main__':
             
             classes2sample = classes_1+classes_10+classes_100+classes_1300
             all_classes = classes2sample
-    else:
-        synsets = [item for ls in subsets.values() for item in ls]
-        synsets = list(set(synsets))
-        intersection_dict = {s:check_synset(s,subsets) for s in synsets}
-        idx2certaincomps = {synset2idx[k]:v for k, v in intersection_dict.items()}
-        if args.quickrun:
-            three_comps = [k for k,v in intersection_dict.items() if len(v) == 3]
-            three_comps.sort()
-            classes2sample = random.sample(three_comps, 5)
-            for c in classes2sample:
-                print(f'{human_synset[c]}')
-            classes2sample = [synset2idx[c] for c in classes2sample]
-            all_classes = classes2sample
-
-    if args.sampler == 'DDIM':
-        sampler = DDIMSampler(model)
-    else: 
-        print('Not setup for DDPM')
-        sampler = DDPMSampler(model)
+    sampler = DDIMSampler(model)
     ddim_steps = args.ddim_steps
     ddim_eta = args.ddim_eta
     scale = args.scale

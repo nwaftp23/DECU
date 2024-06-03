@@ -4,6 +4,13 @@ from omegaconf import OmegaConf
 import pickle
 
 
+def check_synset(s,comps):
+    seen_by = []
+    for k,v in comps.items():
+        if s in v:
+            seen_by.append(k)
+    return seen_by
+
 def create_synset_dicts(dataset):
     train_path = './imagenet_data/data_train'
     #train_path = '/home/nwaftp23/scratch/uncertainty_estimation/imagenet/ILSVRC2012_train'

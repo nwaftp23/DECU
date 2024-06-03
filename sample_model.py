@@ -17,8 +17,7 @@ from save_ensemble import load_ensemble
 from ldm.util import instantiate_from_config
 from ldm.models.diffusion.ddim import DDIMSampler
 from ldm.models.diffusion.ddpm_test import DDPMSampler
-from create_helper_variables import create_synset_dicts
-from create_subset_masked import check_synset
+from create_helper_variables import create_synset_dicts, check_synset
 
 def load_model_from_config(config, ckpt):
     print(f"Loading model from {ckpt}")

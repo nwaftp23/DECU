@@ -71,17 +71,17 @@ python sample_model.py --path /path/to/ensemble
 Sample Rollout:
 
 ```
-python save_ensemble.py --path /path/to/storelogs --ensemble_name bootstrapped --ensemble_comps 5
+python sample_model_rollout.py --path /path/to/ensemble
 ```
 
 Get Uncertainty:
 
 ```
-python save_ensemble.py --path /path/to/storelogs --ensemble_name bootstrapped --ensemble_comps 5
+python get_unc_synsets.py --path /path/to/ensemble
 ```
 
 Get Uncertainty per Pixel:
 
 ```
-python save_ensemble.py --path /path/to/storelogs --ensemble_name bootstrapped --ensemble_comps 5
+python get_unc_pixels.py --path /path/to/ensemble
 ```
