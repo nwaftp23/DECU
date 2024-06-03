@@ -1,0 +1,13 @@
+*.pyc
+*.swp
+logs/*
+taming/*
+outputs/*
+results/*
+graphs/*
+*.out
+Roboto-Thin.ttf
+pretrained_models/*
+*.tar
+imagenet_data/data_train/data/*
+imagenet_data/data_val/data/*
