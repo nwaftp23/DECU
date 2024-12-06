@@ -581,9 +581,11 @@ if __name__ == "__main__":
         # model
         model = instantiate_from_config(config.model)
         if opt.start_from_pretrained:
-            print('Need to change paths to pretrained model')
-            pretrained_model = get_pretrained_model('/home/nwaftp23/latent-diffusion/pretrained_models/diffusion/model.ckpt', 
-                '/home/nwaftp23/latent-diffusion/pretrained_models/diffusion/config.yaml')
+            # print('Need to change paths to pretrained model')
+            # pretrained_model = get_pretrained_model('/home/nwaftp23/latent-diffusion/pretrained_models/diffusion/model.ckpt', 
+            #     '/home/nwaftp23/latent-diffusion/pretrained_models/diffusion/config.yaml')
+            pretrained_model = get_pretrained_model('./pretrained_models/diffusion/model.ckpt', 
+                './pretrained_models/diffusion/config.yaml')
             pretrained_dict = pretrained_model.state_dict()
             model_dict = model.state_dict()
             keys_2_replace = [k for k, v in pretrained_dict.items()]
@@ -751,6 +753,8 @@ if __name__ == "__main__":
             config.data.params.train.params['overwrite_root']=opt.overwrite_data_root
             config.data.params.validation.params['overwrite_root']=opt.overwrite_data_root
         data = instantiate_from_config(config.data)
+        print(type(data))
+        # print(data.txt_filelist)
         # NOTE according to https://pytorch-lightning.readthedocs.io/en/latest/datamodules.html
         # calling these ourselves should not be necessary but it is.
         # lightning still takes care of proper multiprocessing though

@@ -19,9 +19,11 @@ from taming.data.imagenet import ImagePaths
 from ldm.modules.image_degradation import degradation_fn_bsr, degradation_fn_bsr_light
 
 
-def synset2idx(path_to_yaml="data/index_synset.yaml"):
+def synset2idx(path_to_yaml="/ivi/zfs/s0/original_homes/mjazbec/epistem-diff/DECU/data/index_synset.yaml"):
     with open(path_to_yaml) as f:
         di2s = yaml.load(f)
+    print('banana')
+    print(di2s)
     return dict((v,k) for k,v in di2s.items())
 
 
@@ -99,7 +101,12 @@ class ImageNetBase(Dataset):
             self.relpaths = self._filter_relpaths(self.relpaths)
             print("Removed {} files from filelist during filtering.".format(l1 - len(self.relpaths)))
 
+        # print(self.relpaths, len(self.relpaths))
+
         self.synsets = [p.split("/")[0] for p in self.relpaths]
+        # self.synsets = [p.split("/")[1] for p in self.relpaths]
+        # print(self.synsets)
+        # print('banana')
         if not self.config['train']:
             self.abspaths = [os.path.join(self.datadir, p) for p in self.relpaths]
         else:
@@ -110,7 +117,21 @@ class ImageNetBase(Dataset):
         #class_dict = OmegaConf.load('/home/nwaftp23/scratch/uncertainty_estimation/imagenet/ILSVRC2012_train/index_synset.yaml')
         class_dict = OmegaConf.load(os.path.join(self.root, 'index_synset.yaml'))
         class_dict = {v: k for k, v in class_dict.items()}
+        # print(class_dict)
         #class_dict = dict((synset, i) for i, synset in enumerate(unique_synsets))
+        # print(self.synsets)
+        print(sorted(list(set([x for x in self.synsets if x not in class_dict.keys()]))))
+        # print(len(class_dict.keys()))
+        # print(len(set(self.synsets)))
+        # print(sorted([x for x in class_dict.keys() if x not in set(self.synsets)]))
+
+        # class_dict2 = OmegaConf.load('/nvmestore/mjazbec/ImageNet/data_train/index_synset.yaml')
+        # class_dict2 = {v: k for k, v in class_dict2.items()}
+
+        # print(sorted(list(set([x for x in self.synsets if x not in class_dict2.keys()]))))
+        # print(len(class_dict2.keys()))
+        # print(len(set(self.synsets)))
+        # print(sorted([x for x in class_dict2.keys() if x not in set(self.synsets)]))
         if not self.keep_orig_class_label:
             self.class_labels = [class_dict[s] for s in self.synsets]
         else:

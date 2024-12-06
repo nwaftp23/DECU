@@ -83,7 +83,9 @@ data:
     train:
       target: ldm.data.imagenet.ImageNetTrain
       params:
-        data_root: ./imagenet_data
+        # data_root: ./imagenet_data
+        data_root: /nvmestore/mjazbec/imagenet_data
+        # data_root: /nvmestore/mjazbec/ImageNet
         config:
           size: 256
           train: true
@@ -91,7 +93,9 @@ data:
     validation:
       target: ldm.data.imagenet.ImageNetValidation
       params:
-        data_root: ./imagenet_data
+        # data_root: ./imagenet_data
+        data_root: /nvmestore/mjazbec/imagenet_data
+        # data_root: /nmestore/mjazbec/ImageNet
         config:
           size: 256
           train: false

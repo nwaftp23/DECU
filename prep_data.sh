@@ -14,12 +14,12 @@ mkdir ./data_val/data
 mv *.JPEG ./data_val/data
 rm ILSVRC2012_img_val.tar
 cd .. 
-mkdir ./pretrained_models
-mkdir ./pretrained_models/diffusion
-mkdir ./pretrained_models/vae
-wget https://ommer-lab.com/files/latent-diffusion/vq-f4.zip
-wget https://ommer-lab.com/files/latent-diffusion/nitro/cin/model.ckpt
-unzip vq-f4.zip -d ./pretrained_models/vae
-rm vq-f4.zip
-mv model.ckpt ./pretrained_models/diffusion
-python38 create_val_dirs.py
+# mkdir ./pretrained_models
+# mkdir ./pretrained_models/diffusion
+# mkdir ./pretrained_models/vae
+# wget https://ommer-lab.com/files/latent-diffusion/vq-f4.zip
+# wget https://ommer-lab.com/files/latent-diffusion/nitro/cin/model.ckpt
+# unzip vq-f4.zip -d ./pretrained_models/vae
+# rm vq-f4.zip
+# mv model.ckpt ./pretrained_models/diffusion
+# python38 create_val_dirs.py
